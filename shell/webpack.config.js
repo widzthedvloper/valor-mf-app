@@ -24,6 +24,10 @@ module.exports = withZephyr()({
           presets: ["@babel/preset-react"],
         },
       },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
     ],
   },
   plugins: [
@@ -39,5 +43,10 @@ module.exports = withZephyr()({
       template: "./public/index.html",
     }),
   ],
+  resolve: {
+    alias: {
+      '@shared': path.resolve(__dirname, '../shared')
+    },
+  },
 });
 

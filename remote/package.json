@@ -8,14 +8,20 @@
     "build": "webpack --mode production"
   },
   "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "shared": "^0.2.0",
+    "tachyons": "^4.12.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.27.2",
     "@babel/preset-react": "^7.13.13",
     "babel-loader": "^8.2.2",
+    "copy-webpack-plugin": "^13.0.0",
+    "css-loader": "^7.1.2",
     "html-webpack-plugin": "^5.3.1",
+    "style-loader": "^4.0.0",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^4.0.0",

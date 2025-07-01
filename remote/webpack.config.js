@@ -16,12 +16,18 @@ module.exports = withZephyr()({
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        loader: 'babel-loader',
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        options: {
-          presets: ['@babel/preset-react'],
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
         },
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
@@ -31,12 +37,28 @@ module.exports = withZephyr()({
       name: 'remote',
       filename: 'remoteEntry.js',
       exposes: {
-        './App': './src/App',
+        './App': './src/containers/App',
       },
-      shared: { react: { singleton: true }, 'react-dom': { singleton: true } },
+      shared: {
+        react: {
+          singleton: true,
+          eager: true,
+          requiredVersion: '^18.0.0',
+        },
+        'react-dom': {
+          singleton: true,
+          eager: true,
+          requiredVersion: '^18.0.0',
+        },
+      }
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
   ],
+  resolve: {
+    alias: {
+      '@shared': path.resolve(__dirname, '../shared')
+    },
+  },
 });
